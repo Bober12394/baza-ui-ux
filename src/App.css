@@ -1,14 +1,77 @@
-.App {
-  text-align: center;
+* {
+  box-sizing: border-box;
 }
 
-.App-header {
-  background-color: #ffffff;
+body {
+  margin: 0;
+  font-family: 'Poppins', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  background: linear-gradient(90deg, #4a2fa7 0 11%, #f2f4f8 11% 89%, #2e44ce 89% 100%);
+}
+
+.page-shell {
   min-height: 100vh;
+}
+
+.page-content {
+  min-height: calc(100vh - 320px);
+  width: 100%;
+  padding: 24px 0;
+  color: #16223c;
+}
+
+.page-content--center {
   display: flex;
-  flex-direction: column;
   align-items: center;
   justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: #111111;
+  text-align: center;
+  padding: 24px;
+}
+
+.route-view {
+  width: 100%;
+}
+
+.route-view__header {
+  padding: 0 24px;
+}
+
+.route-view__header h2 {
+  margin: 0;
+}
+
+.route-view__header p {
+  color: #5d6780;
+}
+
+.component-render-area {
+  width: 100%;
+  margin-top: 12px;
+}
+
+.red-rectangle {
+  margin-top: 14px;
+  width: 100%;
+  min-height: 180px;
+  background: #ff2f2f;
+  border-radius: 0;
+}
+
+.generated-component {
+  margin-top: 14px;
+  border: 1px solid #d8e2fb;
+  border-radius: 10px;
+  background: #f7faff;
+  padding: 14px 24px;
+  width: 100%;
+}
+
+.generated-component h3 {
+  margin: 0;
+  font-size: 18px;
+  color: #1a3168;
+}
+
+.generated-component p {
+  margin: 10px 0 0;
+  color: #49597f;
 }
