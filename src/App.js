@@ -1,7 +1,7 @@
 import { useEffect, useMemo, useState } from 'react';
 import './App.css';
 import Navbar from './components/Navbar';
-import { getComponentForPath } from './components/componentRegistry';
+import { getComponentForRoute } from './components/componentRegistry';
 import { findRouteMatch } from './components/navigationData';
 
 function App() {
@@ -24,7 +24,7 @@ function App() {
   };
 
   const routeMatch = useMemo(() => findRouteMatch(path), [path]);
-  const SelectedComponent = useMemo(() => getComponentForPath(path), [path]);
+  const SelectedComponent = useMemo(() => getComponentForRoute(path, routeMatch), [path, routeMatch]);
 
   return (
     <div className="page-shell">

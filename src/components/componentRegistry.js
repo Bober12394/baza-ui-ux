@@ -35,6 +35,21 @@ const createIndependentComponent = (componentName, description) => {
   return component;
 };
 
+const loadCustomComponents = () => {
+  const registry = {};
+
+  const context = require.context('./custom', false, /\.js$/);
+  context.keys().forEach((filePath) => {
+    const module = context(filePath);
+    const fileName = filePath.replace('./', '').replace('.js', '');
+    registry[fileName] = module.default;
+  });
+
+  return registry;
+};
+
+const customComponentRegistry = loadCustomComponents();
+
 export const componentRegistry = {};
 
 Object.entries(navigationTree).forEach(([category, subsections]) => {
@@ -49,10 +64,22 @@ Object.entries(navigationTree).forEach(([category, subsections]) => {
   });
 });
 
-
 const pageLayoutApiPath = buildThirdLevelPath('Global Layout', 'Page Layout', 'Page Layout API');
 componentRegistry[pageLayoutApiPath] = function GlobalLayoutPagelayoutPagelayoutapi() {
   return <div className="red-rectangle" aria-label="GlobalLayoutPagelayoutPagelayoutapi" />;
 };
 
-export const getComponentForPath = (path) => componentRegistry[path] || null;
+export const getComponentForRoute = (path, routeMatch) => {
+  if (!routeMatch?.category || !routeMatch?.subsection || !routeMatch?.thirdLevel) {
+    return componentRegistry[path] || null;
+  }
+
+  const componentName = buildComponentName(routeMatch.category, routeMatch.subsection, routeMatch.thirdLevel);
+  const customComponent = customComponentRegistry[componentName];
+
+  if (customComponent) {
+    return customComponent;
+  }
+
+  return componentRegistry[path] || null;
+};
