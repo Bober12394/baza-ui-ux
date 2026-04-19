@@ -1,159 +1,88 @@
 import { useState } from 'react';
 import './Navbar.css';
 
-const martPlacePagesColumn = [
-  [
-    'Home Page One',
-    'Home Page Two',
-    'Home Page Three',
-    'Products Grid',
-    'Products List',
-    'Category Grid Sidebar',
-    'Category List Sidebar',
-    'Search Product',
-    'Single Product V-1',
-    'Single Product V-2',
-    'Single Product V-3',
-  ],
-  [
-    'Single Items Comments',
-    'Single Items Reviews',
-    'Single Items Support',
-    'Single Items FAQs',
-    'Favorites Items',
-    'Author Profile',
-    'Author Items',
-    'Customer Reviews',
-    'Followers',
-    'Following',
-    'Product View Variations',
-  ],
+const levelZeroCategories = [
+  'Global Layout',
+  'Navigation',
+  'Header / Hero',
+  'Content Structure',
+  'Cards & Surfaces',
+  'Data Display',
+  'Charts & Visualization',
+  'Forms & Inputs',
+  'Actions & Buttons',
+  'Feedback & Status',
+  'Modals & Overlays',
+  'User / Account',
+  'Filters & Controls',
+  'Footer',
+  'Media',
+  'Dashboard Components',
+  'E-commerce Components',
+  'System States',
+  'Personalization',
+  'Accessibility',
+  'Integrations',
 ];
 
-const dashboardPages = [
-  'Dashboard',
-  'Account Settings',
-  'Author Purchases',
-  'Items Rating',
-  'Add Credits',
-  'Statements',
-  'Invoice',
-  'Upload Item',
-  'Edit Items',
-  'Withdrawals',
-  'Add Payment Method',
-];
-
-const othersPages = [
-  [
-    'Notifications',
-    'Message Inbox',
-    'Message Compose',
-    'Shopping Cart',
-    'Checkout',
-    'Login',
-    'Register',
-    'Recovery Password',
-    'Support Forum',
-    'Forum Details',
-    'How It Works',
-  ],
-  [
-    'About Us',
-    'Pricing Plan',
-    'Testimonials',
-    'FAQs',
-    'FAQs Details',
-    'Affiliates',
-    'Terms & Conditions',
-    'Blog V-1',
-    'Blog V-2',
-    'Blog Details',
-    'Contact Us',
-    'Menu & Footer Variation',
-  ],
-];
-
-const dropdownByLink = {
-  HOME: ['Main Homepage', 'Home v2', 'Landing Page', 'How it works'],
-  'ALL PRODUCTS': ['Products Grid', 'Products List', 'Product Details', 'Top Sellers'],
-  WORDPRESS: ['Themes', 'Plugins', 'Support', 'Documentation'],
-  FEATURES: ['Author Profile', 'Dashboard', 'Messaging', 'Shopping Cart'],
+const dropdownItems = {
+  'Global Layout': ['Container', 'Grid', 'Sections', 'Spacing'],
+  Navigation: ['Top Navbar', 'Sidebar', 'Tabs', 'Breadcrumbs'],
+  'Header / Hero': ['Hero Banner', 'Page Header', 'Intro CTA', 'Cover Media'],
+  'Content Structure': ['Split Layout', 'Content Blocks', 'Article', 'Timeline'],
+  'Cards & Surfaces': ['Card Grid', 'Feature Card', 'Panels', 'Tiles'],
+  'Data Display': ['Table', 'List', 'Stats', 'Badges'],
+  'Charts & Visualization': ['Line Chart', 'Bar Chart', 'Donut', 'Heatmap'],
+  'Forms & Inputs': ['Text Input', 'Select', 'Checkbox', 'Date Picker'],
+  'Actions & Buttons': ['Primary Button', 'Icon Button', 'Button Group', 'Floating Action'],
+  'Feedback & Status': ['Toast', 'Progress', 'Alert', 'Empty State'],
+  'Modals & Overlays': ['Modal', 'Drawer', 'Popover', 'Tooltip'],
+  'User / Account': ['Profile', 'User Menu', 'Security', 'Preferences'],
+  'Filters & Controls': ['Search Filters', 'Sort', 'Range', 'Segmented Control'],
+  Footer: ['Simple Footer', 'Extended Footer', 'Legal Links', 'Social Links'],
+  Media: ['Image Gallery', 'Video Block', 'Avatar', 'Carousel'],
+  'Dashboard Components': ['KPI Blocks', 'Widget Area', 'Activity Feed', 'Shortcuts'],
+  'E-commerce Components': ['Product Card', 'Cart Summary', 'Checkout Steps', 'Price Tag'],
+  'System States': ['Loading', 'Skeleton', 'Error State', 'Offline State'],
+  Personalization: ['Theme Switcher', 'Saved Views', 'Bookmarks', 'Recommendations'],
+  Accessibility: ['Focus States', 'Keyboard Nav', 'Contrast', 'Screen Reader Labels'],
+  Integrations: ['API Widgets', 'Webhooks', 'Embeds', 'External Data'],
 };
 
-const navLinks = ['HOME', 'ALL PRODUCTS', 'WORDPRESS', 'FEATURES', 'PAGES'];
-
 function Navbar() {
-  const [activeLink, setActiveLink] = useState('');
+  const [activeCategory, setActiveCategory] = useState('');
 
   return (
-    <div className="nav-wrapper" onMouseLeave={() => setActiveLink('')}>
+    <div className="nav-wrapper" onMouseLeave={() => setActiveCategory('')}>
       <nav className="navbar">
         <div className="navbar__inner">
+          <p className="navbar__title">Global Navigation (poziom 0)</p>
           <ul className="navbar__links">
-            {navLinks.map((link) => (
+            {levelZeroCategories.map((category) => (
               <li
-                className={activeLink === link ? 'is-active' : ''}
-                key={link}
-                onMouseEnter={() => setActiveLink(link)}
+                className={activeCategory === category ? 'is-active' : ''}
+                key={category}
+                onMouseEnter={() => setActiveCategory(category)}
               >
-                {link}
+                {category}
               </li>
             ))}
           </ul>
         </div>
       </nav>
 
-      <main className="content-wrap">
-        {activeLink && activeLink !== 'PAGES' && (
-          <section aria-label={`${activeLink} dropdown`} className="dropdown-card dropdown-card--simple">
+      {activeCategory && (
+        <main className="content-wrap">
+          <section aria-label={`${activeCategory} dropdown`} className="dropdown-card">
+            <h2>{activeCategory}</h2>
             <ul>
-              {dropdownByLink[activeLink].map((item) => (
+              {dropdownItems[activeCategory].map((item) => (
                 <li key={item}>{item}</li>
               ))}
             </ul>
           </section>
-        )}
-
-        {activeLink === 'PAGES' && (
-          <section className="dropdown-card mega-menu" aria-label="Pages dropdown preview">
-            <div className="mega-menu__group mega-menu__group--wide">
-              <h2>MartPlace Pages</h2>
-              <div className="mega-menu__list-grid">
-                {martPlacePagesColumn.map((column) => (
-                  <ul key={column[0]}>
-                    {column.map((item) => (
-                      <li key={item}>{item}</li>
-                    ))}
-                  </ul>
-                ))}
-              </div>
-            </div>
-
-            <div className="mega-menu__group">
-              <h2>Dashboard</h2>
-              <ul>
-                {dashboardPages.map((item) => (
-                  <li key={item}>{item}</li>
-                ))}
-              </ul>
-            </div>
-
-            <div className="mega-menu__group mega-menu__group--wide">
-              <h2>Others Pages</h2>
-              <div className="mega-menu__list-grid">
-                {othersPages.map((column) => (
-                  <ul key={column[0]}>
-                    {column.map((item) => (
-                      <li key={item}>{item}</li>
-                    ))}
-                  </ul>
-                ))}
-              </div>
-            </div>
-          </section>
-        )}
-      </main>
+        </main>
+      )}
     </div>
   );
 }
