@@ -49,9 +49,9 @@ function App() {
 
         {path !== '/' && routeMatch && (
           <section className="component-preview">
-            <h2>{routeMatch.subsection}</h2>
+            <h2>{routeMatch.thirdLevel || routeMatch.subsection}</h2>
             <p>Komponent dla ścieżki: {path}</p>
-            {renderDemoElement(routeMatch.subsection)}
+            {renderDemoElement(routeMatch.thirdLevel || routeMatch.subsection)}
           </section>
         )}
 

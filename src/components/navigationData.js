@@ -22,6 +22,7 @@ export const navigationTree = {
   'Integrations / External': ['Embed Widget', 'External Link', 'API Status', 'Integrations Panel'],
 };
 
+
 export const slugify = (value) =>
   value
     .toLowerCase()
@@ -31,16 +32,24 @@ export const slugify = (value) =>
     .trim()
     .replace(/\s+/g, '-');
 
-export const buildSubsectionPath = (category, subsection) =>
-  `/${slugify(category)}/${slugify(subsection)}`;
+export const getThirdLevelItems = (subsection) => [
+  `${subsection} Overview`,
+  `${subsection} Examples`,
+  `${subsection} API`,
+];
+
+export const buildSubsectionPath = (category, subsection) => `/${slugify(category)}/${slugify(subsection)}`;
+
+export const buildThirdLevelPath = (category, subsection, thirdLevel) =>
+  `/${slugify(category)}/${slugify(subsection)}/${slugify(thirdLevel)}`;
 
 export const findRouteMatch = (pathname) => {
   if (pathname === '/') {
     return { isHome: true };
   }
 
-  const [categorySlug, subsectionSlug] = pathname.split('/').filter(Boolean);
-  if (!categorySlug || !subsectionSlug) {
+  const [categorySlug, subsectionSlug, thirdSlug, ...rest] = pathname.split('/').filter(Boolean);
+  if (rest.length || !categorySlug || !subsectionSlug) {
     return null;
   }
 
@@ -54,7 +63,18 @@ export const findRouteMatch = (pathname) => {
       return null;
     }
 
-    return { category, subsection: foundSubsection };
+    if (!thirdSlug) {
+      return { category, subsection: foundSubsection, thirdLevel: '' };
+    }
+
+    const possibleThirdLevels = getThirdLevelItems(foundSubsection).map((item) => ({ value: item, slug: slugify(item) }));
+    const foundThirdLevel = possibleThirdLevels.find((item) => item.slug === thirdSlug);
+
+    if (!foundThirdLevel) {
+      return null;
+    }
+
+    return { category, subsection: foundSubsection, thirdLevel: foundThirdLevel.value };
   }
 
   return null;
