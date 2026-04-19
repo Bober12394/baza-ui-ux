@@ -1,4 +1,4 @@
-import { useEffect, useMemo, useState } from 'react';
+import { useEffect, useMemo, useRef, useState } from 'react';
 import './Navbar.css';
 import { buildThirdLevelPath, findRouteMatch, getThirdLevelItems, navigationTree } from './navigationData';
 
@@ -8,6 +8,7 @@ function Navbar({ currentPath, onNavigate }) {
   const routeMatch = useMemo(() => findRouteMatch(currentPath), [currentPath]);
   const [expandedCategory, setExpandedCategory] = useState('');
   const [activeSubsection, setActiveSubsection] = useState('');
+  const navRootRef = useRef(null);
 
   useEffect(() => {
     if (routeMatch?.category) {
@@ -15,6 +16,23 @@ function Navbar({ currentPath, onNavigate }) {
       setActiveSubsection(routeMatch.subsection);
     }
   }, [routeMatch]);
+
+  useEffect(() => {
+    const handleOutsideClick = (event) => {
+      if (!navRootRef.current || navRootRef.current.contains(event.target)) {
+        return;
+      }
+
+      setExpandedCategory('');
+      setActiveSubsection('');
+    };
+
+    document.addEventListener('mousedown', handleOutsideClick);
+
+    return () => {
+      document.removeEventListener('mousedown', handleOutsideClick);
+    };
+  }, []);
 
   const activeCategory = routeMatch?.category ?? '';
   const activeThirdLevel = routeMatch?.thirdLevel ?? '';
@@ -27,12 +45,18 @@ function Navbar({ currentPath, onNavigate }) {
     setActiveSubsection(navigationTree[category][0] || '');
   };
 
+  const handleHomeClick = () => {
+    setExpandedCategory('');
+    setActiveSubsection('');
+    onNavigate('/');
+  };
+
   return (
-    <div className="nav-wrapper">
+    <div className="nav-wrapper" ref={navRootRef}>
       <nav className="navbar">
         <div className="navbar__inner">
           <div className="navbar__top-row">
-            <button className="home-button" onClick={() => onNavigate('/')} type="button">
+            <button className="home-button" onClick={handleHomeClick} type="button">
               Home
             </button>
           </div>
