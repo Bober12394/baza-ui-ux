@@ -37,7 +37,6 @@
   transition: color 0.2s ease;
 }
 
-.navbar__links li:hover,
 .navbar__links .is-active {
   color: var(--accent);
 }

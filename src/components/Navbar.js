@@ -53,7 +53,7 @@ function Navbar() {
   const [activeCategory, setActiveCategory] = useState('');
 
   return (
-    <div className="nav-wrapper" onMouseLeave={() => setActiveCategory('')}>
+    <div className="nav-wrapper">
       <nav className="navbar">
         <div className="navbar__inner">
           <ul className="navbar__links">
@@ -61,7 +61,7 @@ function Navbar() {
               <li
                 className={activeCategory === category ? 'is-active' : ''}
                 key={category}
-                onMouseEnter={() => setActiveCategory(category)}
+                onClick={() => setActiveCategory(category)}
               >
                 {category}
               </li>
