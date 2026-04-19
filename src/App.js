@@ -3,7 +3,15 @@ import './App.css';
 import Navbar from './components/Navbar';
 import { findRouteMatch } from './components/navigationData';
 
+function RedRectangle() {
+  return <div className="red-rectangle" aria-label="Red rectangle component" />;
+}
+
 function renderDemoElement(subsection) {
+  if (subsection === 'Page Layout API') {
+    return <RedRectangle />;
+  }
+
   if (subsection.toLowerCase().includes('footer')) {
     return <footer className="component-preview__footer">Footer komponent preview</footer>;
   }

@@ -64,7 +64,7 @@ function Navbar({ currentPath, onNavigate }) {
               ))}
             </ul>
 
-            <h3 className="third-level-title">Linki poziomu 3</h3>
+            <h3 className="third-level-title">przykłady</h3>
             <ul className="third-level-list">
               {thirdLevelItems.map((item) => {
                 const targetPath = buildThirdLevelPath(expandedCategory, activeSubsection, item);
@@ -88,7 +88,6 @@ function Navbar({ currentPath, onNavigate }) {
 
             <div className="subsection-detail">
               <p className="subsection-detail__value">{activeThirdLevel || 'Wybierz link poziomu 3'}</p>
-              <p className="subsection-detail__hint">URL obsługuje teraz kategorię, podsekcję i trzeci poziom.</p>
             </div>
           </section>
         </main>

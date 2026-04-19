@@ -67,3 +67,11 @@ body {
   background: #f6f9ff;
   color: #294786;
 }
+
+.red-rectangle {
+  margin-top: 14px;
+  width: 280px;
+  height: 140px;
+  background: #ff2f2f;
+  border-radius: 8px;
+}
