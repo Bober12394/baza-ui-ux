@@ -4,10 +4,6 @@
   --accent: #2f76ff;
 }
 
-.nav-wrapper {
-  min-height: 100vh;
-}
-
 .navbar {
   background: #fff;
   border-bottom: 1px solid #d9deea;

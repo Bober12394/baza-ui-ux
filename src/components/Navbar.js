@@ -84,7 +84,7 @@ const dropdownByLink = {
 const navLinks = ['HOME', 'ALL PRODUCTS', 'WORDPRESS', 'FEATURES', 'PAGES'];
 
 function Navbar() {
-  const [activeLink, setActiveLink] = useState('PAGES');
+  const [activeLink, setActiveLink] = useState('');
 
   return (
     <div className="nav-wrapper" onMouseLeave={() => setActiveLink('')}>
