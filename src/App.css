@@ -75,3 +75,22 @@ body {
   background: #ff2f2f;
   border-radius: 8px;
 }
+
+.generated-component {
+  margin-top: 14px;
+  border: 1px solid #d8e2fb;
+  border-radius: 10px;
+  background: #f7faff;
+  padding: 14px;
+}
+
+.generated-component h3 {
+  margin: 0;
+  font-size: 18px;
+  color: #1a3168;
+}
+
+.generated-component p {
+  margin: 10px 0 0;
+  color: #49597f;
+}
