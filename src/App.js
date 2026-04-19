@@ -1,4 +1,5 @@
 import './App.css';
+import Navbar from './components/Navbar';
 
 const martPlacePagesColumn = [
   [
@@ -76,62 +77,7 @@ const othersPages = [
 function App() {
   return (
     <div className="page-shell">
-      <nav className="navbar">
-        <div className="navbar__inner">
-          <ul className="navbar__links">
-            <li>HOME</li>
-            <li>ALL PRODUCTS</li>
-            <li>WORDPRESS</li>
-            <li>FEATURES</li>
-            <li className="is-active">PAGES</li>
-          </ul>
-          <form className="navbar__search" onSubmit={(event) => event.preventDefault()}>
-            <input aria-label="Search product" placeholder="Search product here..." type="search" />
-            <button aria-label="Search" type="submit">
-              <span>⌕</span>
-            </button>
-          </form>
-        </div>
-      </nav>
-
-      <main className="content-wrap">
-        <section className="mega-menu" aria-label="Pages dropdown preview">
-          <div className="mega-menu__group mega-menu__group--wide">
-            <h2>MartPlace Pages</h2>
-            <div className="mega-menu__list-grid">
-              {martPlacePagesColumn.map((column) => (
-                <ul key={column[0]}>
-                  {column.map((item) => (
-                    <li key={item}>{item}</li>
-                  ))}
-                </ul>
-              ))}
-            </div>
-          </div>
-
-          <div className="mega-menu__group">
-            <h2>Dashboard</h2>
-            <ul>
-              {dashboardPages.map((item) => (
-                <li key={item}>{item}</li>
-              ))}
-            </ul>
-          </div>
-
-          <div className="mega-menu__group mega-menu__group--wide">
-            <h2>Others Pages</h2>
-            <div className="mega-menu__list-grid">
-              {othersPages.map((column) => (
-                <ul key={column[0]}>
-                  {column.map((item) => (
-                    <li key={item}>{item}</li>
-                  ))}
-                </ul>
-              ))}
-            </div>
-          </div>
-        </section>
-      </main>
+      <Navbar />
     </div>
   );
 }
