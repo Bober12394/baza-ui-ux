@@ -56,7 +56,6 @@ function Navbar() {
     <div className="nav-wrapper" onMouseLeave={() => setActiveCategory('')}>
       <nav className="navbar">
         <div className="navbar__inner">
-          <p className="navbar__title">Global Navigation (poziom 0)</p>
           <ul className="navbar__links">
             {levelZeroCategories.map((category) => (
               <li

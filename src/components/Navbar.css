@@ -16,17 +16,9 @@
   display: flex;
   flex-direction: column;
   align-items: flex-start;
-  gap: 8px;
+  gap: 10px;
 }
 
-.navbar__title {
-  margin: 0;
-  font-size: 12px;
-  letter-spacing: 0.08em;
-  text-transform: uppercase;
-  font-weight: 700;
-  color: var(--text-muted);
-}
 
 .navbar__links {
   margin: 0;
@@ -35,8 +27,8 @@
   display: flex;
   flex-wrap: wrap;
   gap: 14px 24px;
-  font-size: 13px;
-  font-weight: 600;
+  font-size: 16px;
+  font-weight: 700;
   color: #2b2f3d;
 }
 
@@ -66,7 +58,7 @@
   margin: 0;
   padding-bottom: 8px;
   border-bottom: 1px solid #eceff5;
-  font-size: 22px;
+  font-size: 26px;
   color: var(--text-main);
 }
 
@@ -81,7 +73,7 @@
 
 .dropdown-card li {
   color: var(--text-muted);
-  font-size: 14px;
+  font-size: 16px;
 }
 
 @media (max-width: 1000px) {
