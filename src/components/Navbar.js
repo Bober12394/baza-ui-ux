@@ -1,56 +1,64 @@
-import { useState } from 'react';
+import { useMemo, useState } from 'react';
 import './Navbar.css';
 
-const levelZeroCategories = [
-  'Global Layout',
-  'Navigation',
-  'Header / Hero',
-  'Content Structure',
-  'Cards & Surfaces',
-  'Data Display',
-  'Charts & Visualization',
-  'Forms & Inputs',
-  'Actions & Buttons',
-  'Feedback & Status',
-  'Modals & Overlays',
-  'User / Account',
-  'Filters & Controls',
-  'Footer',
-  'Media',
-  'Dashboard Components',
-  'E-commerce Components',
-  'System States',
-  'Personalization',
-  'Accessibility',
-  'Integrations',
-];
-
-const dropdownItems = {
-  'Global Layout': ['Container', 'Grid', 'Sections', 'Spacing'],
-  Navigation: ['Top Navbar', 'Sidebar', 'Tabs', 'Breadcrumbs'],
-  'Header / Hero': ['Hero Banner', 'Page Header', 'Intro CTA', 'Cover Media'],
-  'Content Structure': ['Split Layout', 'Content Blocks', 'Article', 'Timeline'],
-  'Cards & Surfaces': ['Card Grid', 'Feature Card', 'Panels', 'Tiles'],
-  'Data Display': ['Table', 'List', 'Stats', 'Badges'],
-  'Charts & Visualization': ['Line Chart', 'Bar Chart', 'Donut', 'Heatmap'],
-  'Forms & Inputs': ['Text Input', 'Select', 'Checkbox', 'Date Picker'],
-  'Actions & Buttons': ['Primary Button', 'Icon Button', 'Button Group', 'Floating Action'],
-  'Feedback & Status': ['Toast', 'Progress', 'Alert', 'Empty State'],
-  'Modals & Overlays': ['Modal', 'Drawer', 'Popover', 'Tooltip'],
-  'User / Account': ['Profile', 'User Menu', 'Security', 'Preferences'],
-  'Filters & Controls': ['Search Filters', 'Sort', 'Range', 'Segmented Control'],
-  Footer: ['Simple Footer', 'Extended Footer', 'Legal Links', 'Social Links'],
-  Media: ['Image Gallery', 'Video Block', 'Avatar', 'Carousel'],
-  'Dashboard Components': ['KPI Blocks', 'Widget Area', 'Activity Feed', 'Shortcuts'],
-  'E-commerce Components': ['Product Card', 'Cart Summary', 'Checkout Steps', 'Price Tag'],
-  'System States': ['Loading', 'Skeleton', 'Error State', 'Offline State'],
-  Personalization: ['Theme Switcher', 'Saved Views', 'Bookmarks', 'Recommendations'],
-  Accessibility: ['Focus States', 'Keyboard Nav', 'Contrast', 'Screen Reader Labels'],
-  Integrations: ['API Widgets', 'Webhooks', 'Embeds', 'External Data'],
+const navigationTree = {
+  'Global Layout': ['Page Layout', 'Container', 'Grid System', 'Spacing System', 'Responsive Breakpoints'],
+  Navigation: [
+    'Navbar',
+    'Sidebar',
+    'Mega Menu',
+    'Dropdown Navigation',
+    'Breadcrumb',
+    'Tabs Navigation',
+    'Pagination',
+    'Stepper Navigation',
+  ],
+  'Header / Hero': ['Page Header', 'Hero Section', 'Hero Banner', 'Page Title', 'Subtitle', 'Call To Action Header'],
+  'Content Structure': ['Section', 'Content Block', 'Container Block', 'Divider', 'Spacer', 'Columns', 'Grid Layout'],
+  'Cards & Surfaces': ['Card', 'Card Group', 'Statistic Card', 'Feature Card', 'Profile Card', 'Pricing Card', 'Dashboard Widget'],
+  'Data Display': ['Table', 'Data Grid', 'List', 'List Item', 'Timeline', 'Activity Feed', 'Stats Panel'],
+  'Charts & Visualization': ['Line Chart', 'Bar Chart', 'Pie Chart', 'Donut Chart', 'Area Chart', 'Heatmap', 'Gauge Chart', 'Sparkline'],
+  'Forms & Inputs': [
+    'Form',
+    'Input Field',
+    'Textarea',
+    'Select Dropdown',
+    'Multi Select',
+    'Checkbox',
+    'Radio Button',
+    'Toggle Switch',
+    'Date Picker',
+    'File Upload',
+    'Autocomplete Input',
+    'Form Group',
+  ],
+  'Actions & Buttons': ['Primary Button', 'Secondary Button', 'Icon Button', 'Floating Action Button', 'Button Group', 'Link Button'],
+  'Feedback & Status': ['Alert', 'Notification', 'Toast', 'Snackbar', 'Badge', 'Tag', 'Progress Bar', 'Loader', 'Skeleton Loader'],
+  'Modals & Overlays': ['Modal', 'Dialog', 'Drawer', 'Slide Over', 'Popover', 'Tooltip', 'Context Menu'],
+  'User / Account': ['Avatar', 'User Profile', 'User Menu', 'Account Switcher', 'Settings Panel'],
+  'Filters & Controls': ['Filter Bar', 'Filter Sidebar', 'Search Bar', 'Sort Control', 'View Switcher', 'Date Range Filter'],
+  Footer: ['Footer', 'Footer Links', 'Footer Navigation', 'Footer Info', 'Legal Links'],
+  Media: ['Image', 'Video', 'Gallery', 'Carousel', 'Slider'],
+  'Dashboard Specific': ['KPI Widget', 'Metrics Panel', 'Dashboard Grid', 'Analytics Panel', 'Report Section'],
+  'E-commerce (Optional)': ['Product Card', 'Product Grid', 'Cart', 'Checkout', 'Pricing Table'],
+  'System / States': ['Empty State', 'Error State', 'Loading State', 'Success State', 'Offline State'],
+  Personalization: ['Theme Switcher', 'Layout Switcher', 'Density Control', 'Preferences Panel'],
+  Accessibility: ['Skip Link', 'Focus Indicator', 'ARIA Labels', 'Keyboard Navigation'],
+  'Integrations / External': ['Embed Widget', 'External Link', 'API Status', 'Integrations Panel'],
 };
+
+const levelZeroCategories = Object.keys(navigationTree);
 
 function Navbar() {
   const [activeCategory, setActiveCategory] = useState('');
+  const [activeSubsection, setActiveSubsection] = useState('');
+
+  const subsections = useMemo(() => navigationTree[activeCategory] ?? [], [activeCategory]);
+
+  const handleCategoryClick = (category) => {
+    setActiveCategory(category);
+    setActiveSubsection(navigationTree[category][0] ?? '');
+  };
 
   return (
     <div className="nav-wrapper">
@@ -61,7 +69,7 @@ function Navbar() {
               <li
                 className={activeCategory === category ? 'is-active' : ''}
                 key={category}
-                onClick={() => setActiveCategory(category)}
+                onClick={() => handleCategoryClick(category)}
               >
                 {category}
               </li>
@@ -74,11 +82,24 @@ function Navbar() {
         <main className="content-wrap">
           <section aria-label={`${activeCategory} dropdown`} className="dropdown-card">
             <h2>{activeCategory}</h2>
-            <ul>
-              {dropdownItems[activeCategory].map((item) => (
-                <li key={item}>{item}</li>
+
+            <ul className="subsection-list">
+              {subsections.map((item) => (
+                <li
+                  className={activeSubsection === item ? 'is-active' : ''}
+                  key={item}
+                  onClick={() => setActiveSubsection(item)}
+                >
+                  {item}
+                </li>
               ))}
             </ul>
+
+            <div className="subsection-detail">
+              <p className="subsection-detail__label">Poziom 2 (aktywna podsekcja)</p>
+              <p className="subsection-detail__value">{activeSubsection}</p>
+              <p className="subsection-detail__hint">Miejsce na poziom 3 hierarchii w kolejnym kroku.</p>
+            </div>
           </section>
         </main>
       )}
