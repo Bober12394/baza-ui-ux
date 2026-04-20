@@ -1,8 +1,44 @@
 .actionsbuttons-primarybutton-ex1 {
   min-height: 100vh;
   display: flex;
-  align-items: center;
+  flex-direction: column;
   justify-content: center;
+  gap: 24px;
+  padding: 24px;
+}
+
+.component-section {
+  display: flex;
+  justify-content: center;
+}
+
+.component-section--references {
+  flex-direction: column;
+  gap: 12px;
+}
+
+.component-section-title {
+  margin: 0;
+  text-align: center;
+  font-size: 1rem;
+  color: #4a4a4a;
+}
+
+.reference-card {
+  border: 1px solid #e0e0e0;
+  border-radius: 10px;
+  padding: 16px;
+  background: #fafafa;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.reference-card-name {
+  margin: 0;
+  font-size: 0.875rem;
+  font-weight: 600;
+  color: #616161;
 }
 
 .ui-buttons-stack {

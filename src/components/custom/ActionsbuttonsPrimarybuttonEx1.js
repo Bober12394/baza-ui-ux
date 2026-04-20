@@ -39,12 +39,28 @@ function UIButton({
   );
 }
 
+function ActionsbuttonsPrimarybuttonEx1Demo() {
+  return (
+    <div className="ui-buttons-stack" role="group" aria-label="Primary button examples">
+      <UIButton label="Contained" variant="contained" size="m" color="rgb(25, 118, 210)" borderRadius="4px" />
+      <UIButton label="Outlined" variant="outlined" size="m" color="rgb(255, 114, 0)" borderRadius="999px" />
+    </div>
+  );
+}
+
 function ActionsbuttonsPrimarybuttonEx1() {
   return (
     <section className="generated-component actionsbuttons-primarybutton-ex1" aria-label="ActionsbuttonsPrimarybuttonEx1">
-      <div className="ui-buttons-stack" role="group" aria-label="Primary button examples">
-        <UIButton label="Contained" variant="contained" size="m" color="rgb(25, 118, 210)" borderRadius="4px" />
-        <UIButton label="Outlined" variant="outlined" size="m" color="rgb(255, 114, 0)" borderRadius="999px" />
+      <div className="component-section component-section--main">
+        <ActionsbuttonsPrimarybuttonEx1Demo />
+      </div>
+
+      <div className="component-section component-section--references" aria-label="Component references">
+        <h4 className="component-section-title">Referencje komponentów</h4>
+        <div className="reference-card">
+          <p className="reference-card-name">ActionsbuttonsPrimarybuttonEx1</p>
+          <ActionsbuttonsPrimarybuttonEx1Demo />
+        </div>
       </div>
     </section>
   );
