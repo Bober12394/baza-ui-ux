@@ -5,22 +5,19 @@
   justify-content: center;
 }
 
-.mui-buttons-stack {
+.ui-buttons-stack {
   display: flex;
   align-items: center;
   gap: 12px;
 }
 
-.mui-button {
+.ui-button {
   font-family: "Roboto", "Helvetica", "Arial", sans-serif;
-  font-size: 0.875rem;
   font-weight: 500;
   line-height: 1.75;
   letter-spacing: 0.02857em;
   text-transform: uppercase;
-  min-width: 64px;
-  padding: 6px 16px;
-  border-radius: 4px;
+  border-radius: var(--btn-border-radius, 4px);
   cursor: pointer;
   transition:
     background-color 250ms cubic-bezier(0.4, 0, 0.2, 1),
@@ -29,48 +26,33 @@
     color 250ms cubic-bezier(0.4, 0, 0.2, 1);
 }
 
-.mui-button-contained {
+.ui-button--contained {
   border: 0;
-  color: #fff;
-  background-color: #1976d2;
+  color: var(--btn-text-color, #fff);
+  background-color: var(--btn-color, rgb(25, 118, 210));
   box-shadow:
     0px 3px 1px -2px rgba(0, 0, 0, 0.2),
     0px 2px 2px 0px rgba(0, 0, 0, 0.14),
     0px 1px 5px 0px rgba(0, 0, 0, 0.12);
 }
 
-.mui-button-contained:hover {
-  background-color: #1565c0;
-  box-shadow:
-    0px 2px 4px -1px rgba(0, 0, 0, 0.2),
-    0px 4px 5px 0px rgba(0, 0, 0, 0.14),
-    0px 1px 10px 0px rgba(0, 0, 0, 0.12);
+.ui-button--contained:hover {
+  filter: brightness(0.92);
 }
 
-.mui-button-contained:active {
-  box-shadow:
-    0px 5px 5px -3px rgba(0, 0, 0, 0.2),
-    0px 8px 10px 1px rgba(0, 0, 0, 0.14),
-    0px 3px 14px 2px rgba(0, 0, 0, 0.12);
-}
-
-.mui-button-outlined {
-  border: 1px solid rgba(25, 118, 210, 0.5);
-  color: #1976d2;
+.ui-button--outlined {
+  border: 1px solid var(--btn-color, rgb(25, 118, 210));
+  color: var(--btn-text-color, var(--btn-color, rgb(25, 118, 210)));
   background-color: transparent;
   box-shadow: none;
 }
 
-.mui-button-outlined:hover {
-  border-color: #1976d2;
-  background-color: rgba(25, 118, 210, 0.04);
+.ui-button--outlined:hover {
+  background-color: rgba(0, 0, 0, 0.04);
+  border-color: var(--btn-color, rgb(25, 118, 210));
 }
 
-.mui-button-outlined:active {
-  background-color: rgba(25, 118, 210, 0.08);
-}
-
-.mui-button:focus-visible {
-  outline: 2px solid #90caf9;
+.ui-button:focus-visible {
+  outline: 2px solid rgba(25, 118, 210, 0.45);
   outline-offset: 2px;
 }
