@@ -34,7 +34,7 @@ export const slugify = (value) =>
 
 export const getThirdLevelItems = (subsection) => [
   `${subsection} Overview`,
-  `${subsection} Examples`,
+  subsection === 'Primary Button' ? 'Ex1' : `${subsection} Examples`,
   `${subsection} API`,
 ];
 
