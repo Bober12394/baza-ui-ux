@@ -12,6 +12,10 @@ body {
   min-height: 100vh;
 }
 
+.page-shell--ui-builder {
+  background: #fff;
+}
+
 .page-content {
   min-height: calc(100vh - 320px);
   width: 100%;

@@ -32,7 +32,7 @@ function App() {
   const showRouteComponent = path !== '/' && routeMatch && SelectedComponent;
 
   return (
-    <div className="page-shell">
+    <div className={`page-shell ${isUiBuilderPage ? 'page-shell--ui-builder' : ''}`}>
       {!isUiBuilderPage && <Navbar currentPath={path} onNavigate={navigate} />}
 
       {isUiBuilderPage && (
