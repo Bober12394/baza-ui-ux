@@ -26,16 +26,27 @@ function App() {
   const routeMatch = useMemo(() => findRouteMatch(path), [path]);
   const SelectedComponent = useMemo(() => getComponentForRoute(path, routeMatch), [path, routeMatch]);
 
-  const showNotFound = path !== '/' && (!routeMatch || !SelectedComponent);
+  const isUiBuilderPage = path === '/ui-builder';
+  const showNotFound = path !== '/' && !isUiBuilderPage && (!routeMatch || !SelectedComponent);
   const showHome = path === '/';
   const showRouteComponent = path !== '/' && routeMatch && SelectedComponent;
 
   return (
-    <div className="page-shell">
-      <Navbar currentPath={path} onNavigate={navigate} />
+    <div className={`page-shell ${isUiBuilderPage ? 'page-shell--ui-builder' : ''}`}>
+      {!isUiBuilderPage && <Navbar currentPath={path} onNavigate={navigate} />}
 
-      <main className={`page-content ${showHome || showNotFound ? 'page-content--center' : ''}`}>
+      {isUiBuilderPage && (
+        <nav className="ui-builder-nav">
+          <button className="ui-builder-nav__library-button" onClick={() => navigate('/')} type="button">
+            Biblioteka
+          </button>
+        </nav>
+      )}
+
+      <main className={`page-content ${showHome || showNotFound || isUiBuilderPage ? 'page-content--center' : ''}`}>
         {showHome && <h1>Strona główna</h1>}
+
+        {isUiBuilderPage && <h1>UI Builder</h1>}
 
         {showRouteComponent && (
           <section className="route-view">

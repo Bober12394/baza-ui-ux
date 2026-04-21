@@ -51,6 +51,12 @@ function Navbar({ currentPath, onNavigate }) {
     onNavigate('/');
   };
 
+  const handleUiBuilderClick = () => {
+    setExpandedCategory('');
+    setActiveSubsection('');
+    onNavigate('/ui-builder');
+  };
+
   return (
     <div className="nav-wrapper" ref={navRootRef}>
       <nav className="navbar">
@@ -58,6 +64,9 @@ function Navbar({ currentPath, onNavigate }) {
           <div className="navbar__top-row">
             <button className="home-button" onClick={handleHomeClick} type="button">
               Home
+            </button>
+            <button className="ui-builder-button" onClick={handleUiBuilderClick} type="button">
+              UI Builder
             </button>
           </div>
 
