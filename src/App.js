@@ -1,18 +1,17 @@
-import { useEffect, useMemo, useState } from 'react';
-import './App.css';
-import Navbar from './components/Navbar';
-import { getComponentForRoute } from './components/componentRegistry';
-import { findRouteMatch } from './components/navigationData';
-import PromptBriefForm from './components/PromptBriefForm';
+import { useEffect, useMemo, useState } from "react";
+import "./App.css";
+import Navbar from "./components/Navbar";
+import { getComponentForRoute } from "./components/componentRegistry";
+import { findRouteMatch } from "./components/navigationData";
 
 function App() {
   const [path, setPath] = useState(window.location.pathname);
 
   useEffect(() => {
     const onPopState = () => setPath(window.location.pathname);
-    window.addEventListener('popstate', onPopState);
+    window.addEventListener("popstate", onPopState);
 
-    return () => window.removeEventListener('popstate', onPopState);
+    return () => window.removeEventListener("popstate", onPopState);
   }, []);
 
   const navigate = (targetPath) => {
@@ -20,34 +19,44 @@ function App() {
       return;
     }
 
-    window.history.pushState({}, '', targetPath);
+    window.history.pushState({}, "", targetPath);
     setPath(targetPath);
   };
 
   const routeMatch = useMemo(() => findRouteMatch(path), [path]);
-  const SelectedComponent = useMemo(() => getComponentForRoute(path, routeMatch), [path, routeMatch]);
+  const SelectedComponent = useMemo(
+    () => getComponentForRoute(path, routeMatch),
+    [path, routeMatch],
+  );
 
-  const isUiBuilderPage = path === '/ui-builder';
-  const showNotFound = path !== '/' && !isUiBuilderPage && (!routeMatch || !SelectedComponent);
-  const showHome = path === '/';
-  const showRouteComponent = path !== '/' && routeMatch && SelectedComponent;
+  const isUiBuilderPage = path === "/ui-builder";
+  const showNotFound =
+    path !== "/" && !isUiBuilderPage && (!routeMatch || !SelectedComponent);
+  const showHome = path === "/";
+  const showRouteComponent = path !== "/" && routeMatch && SelectedComponent;
 
   return (
-    <div className={`page-shell ${isUiBuilderPage ? 'page-shell--ui-builder' : ''}`}>
+    <div
+      className={`page-shell ${isUiBuilderPage ? "page-shell--ui-builder" : ""}`}
+    >
       {!isUiBuilderPage && <Navbar currentPath={path} onNavigate={navigate} />}
 
       {isUiBuilderPage && (
         <nav className="ui-builder-nav">
-          <button className="ui-builder-nav__library-button" onClick={() => navigate('/')} type="button">
+          <button
+            className="ui-builder-nav__library-button"
+            onClick={() => navigate("/")}
+            type="button"
+          >
             Biblioteka
           </button>
         </nav>
       )}
 
-      <main className={`page-content ${showHome || showNotFound || isUiBuilderPage ? 'page-content--center' : ''}`}>
+      <main
+        className={`page-content ${showHome || showNotFound || isUiBuilderPage ? "page-content--center" : ""}`}
+      >
         {showHome && <h1>Strona główna</h1>}
-
-        {isUiBuilderPage && <PromptBriefForm />}
 
         {showRouteComponent && (
           <section className="route-view">
