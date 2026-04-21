@@ -99,3 +99,94 @@ body {
   margin: 10px 0 0;
   color: #49597f;
 }
+
+.prompt-brief {
+  width: min(980px, 100%);
+  margin: 0 auto;
+  padding: 0 24px 24px;
+  text-align: left;
+}
+
+.prompt-brief__header h1 {
+  margin: 0;
+  font-size: 30px;
+}
+
+.prompt-brief__header p {
+  margin: 10px 0 0;
+  color: #5c6784;
+}
+
+.prompt-brief__form {
+  margin-top: 20px;
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 14px;
+}
+
+.prompt-brief__form label {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  color: #1e2b48;
+  font-weight: 600;
+}
+
+.prompt-brief__form input,
+.prompt-brief__form textarea {
+  width: 100%;
+  border: 1px solid #ccd7f3;
+  border-radius: 10px;
+  padding: 10px 12px;
+  font-size: 14px;
+  font-family: inherit;
+  color: #15203d;
+}
+
+.prompt-brief__form textarea {
+  resize: vertical;
+  min-height: 84px;
+}
+
+.prompt-brief__result {
+  margin-top: 20px;
+  border: 1px solid #dbe4fa;
+  border-radius: 12px;
+  background: #f7faff;
+  padding: 16px;
+}
+
+.prompt-brief__result-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+}
+
+.prompt-brief__result-header h2 {
+  margin: 0;
+  font-size: 18px;
+}
+
+.prompt-brief__result-header button {
+  border: none;
+  background: #2f76ff;
+  color: #fff;
+  border-radius: 8px;
+  padding: 8px 14px;
+  font-weight: 700;
+  cursor: pointer;
+}
+
+.prompt-brief__result pre {
+  margin: 14px 0 0;
+  white-space: pre-wrap;
+  font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, 'Liberation Mono', 'Courier New', monospace;
+  color: #21325d;
+}
+
+@media (max-width: 840px) {
+  .prompt-brief__form {
+    grid-template-columns: 1fr;
+  }
+}
