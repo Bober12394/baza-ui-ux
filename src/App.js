@@ -3,6 +3,7 @@ import './App.css';
 import Navbar from './components/Navbar';
 import { getComponentForRoute } from './components/componentRegistry';
 import { findRouteMatch } from './components/navigationData';
+import PromptBriefForm from './components/PromptBriefForm';
 
 function App() {
   const [path, setPath] = useState(window.location.pathname);
@@ -46,7 +47,7 @@ function App() {
       <main className={`page-content ${showHome || showNotFound || isUiBuilderPage ? 'page-content--center' : ''}`}>
         {showHome && <h1>Strona główna</h1>}
 
-        {isUiBuilderPage && <h1>UI Builder</h1>}
+        {isUiBuilderPage && <PromptBriefForm />}
 
         {showRouteComponent && (
           <section className="route-view">
