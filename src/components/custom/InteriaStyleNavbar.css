@@ -1,0 +1,286 @@
+.interia-navbar-demo {
+  min-height: 180vh;
+  background: #f6f7f9;
+  color: #1e2e58;
+}
+
+.interia-navbar {
+  position: sticky;
+  top: 0;
+  z-index: 50;
+  background: #f3f4f6;
+  border-bottom: 1px solid #e1e3e8;
+  transition: box-shadow 180ms ease, background-color 180ms ease;
+}
+
+.interia-navbar.is-compact {
+  background: #fff;
+  box-shadow: 0 8px 18px rgb(16 34 86 / 8%);
+}
+
+.interia-navbar__inner {
+  width: min(1440px, 100%);
+  margin: 0 auto;
+  min-height: 106px;
+  display: grid;
+  grid-template-columns: 220px 260px 1fr auto auto;
+  align-items: center;
+  gap: 28px;
+  padding: 12px 28px;
+}
+
+.interia-navbar__brand {
+  text-decoration: none;
+  color: #1f3567;
+  line-height: 0.95;
+  display: inline-flex;
+  flex-direction: column;
+  letter-spacing: -0.03em;
+}
+
+.interia-navbar__brand-main {
+  font-size: clamp(2.6rem, 3vw, 4rem);
+  font-weight: 800;
+}
+
+.interia-navbar__brand-sub {
+  font-size: 2.25rem;
+  font-weight: 700;
+  text-align: right;
+}
+
+.interia-navbar__weather,
+.interia-navbar__search {
+  transition: opacity 180ms ease, transform 180ms ease;
+}
+
+.interia-navbar.is-compact .interia-navbar__weather,
+.interia-navbar.is-compact .interia-navbar__search {
+  opacity: 0;
+  pointer-events: none;
+  transform: translateY(-6px);
+}
+
+.interia-navbar__weather p {
+  margin: 0;
+}
+
+.interia-navbar__weather-top {
+  font-size: 1rem;
+  font-weight: 700;
+}
+
+.interia-navbar__weather-bottom {
+  margin-top: 8px;
+  font-size: 0.9rem;
+  color: #334a7c;
+}
+
+.interia-navbar__search {
+  max-width: 310px;
+}
+
+.interia-navbar__search-label {
+  display: block;
+  font-size: 0.82rem;
+  margin-bottom: 4px;
+  text-transform: uppercase;
+}
+
+.interia-navbar__search-input {
+  width: 100%;
+  border: 0;
+  border-bottom: 1px solid #7382a4;
+  background: transparent;
+  height: 36px;
+  font-size: 1rem;
+  color: #1d2f59;
+}
+
+.interia-navbar__quick-links {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 16px;
+}
+
+.interia-navbar__quick-link {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 6px;
+  color: #1f3567;
+  text-decoration: none;
+  font-size: 0.72rem;
+  text-transform: uppercase;
+  font-weight: 600;
+}
+
+.interia-navbar__quick-icon {
+  border: 2px solid #1f3567;
+  width: 48px;
+  height: 36px;
+  border-radius: 40%;
+  display: grid;
+  place-items: center;
+  font-size: 1.15rem;
+}
+
+.interia-navbar__menu-trigger,
+.interia-navbar__mobile-trigger {
+  border: 0;
+  background: transparent;
+  color: #1f3567;
+  display: inline-flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+  text-transform: uppercase;
+  cursor: pointer;
+  font-size: 0.72rem;
+  font-weight: 700;
+}
+
+.interia-navbar__mobile-trigger {
+  display: none;
+}
+
+.interia-navbar__menu-trigger span:first-child,
+.interia-navbar__mobile-trigger span:first-child {
+  font-size: 2rem;
+  line-height: 0.8;
+}
+
+.interia-navbar__dropdown {
+  width: min(1440px, 100%);
+  margin: 0 auto;
+  background: #fff;
+  border-top: 1px solid #e2e6f0;
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 24px;
+  padding: 22px 28px;
+  animation: fade-slide 180ms ease;
+}
+
+.interia-navbar__dropdown-section h2 {
+  margin: 0;
+  font-size: 1rem;
+}
+
+.interia-navbar__dropdown-section ul {
+  margin: 10px 0 0;
+  padding: 0;
+  list-style: none;
+  display: grid;
+  gap: 8px;
+}
+
+.interia-navbar__dropdown-section a,
+.interia-navbar__mobile-list a {
+  color: #2a4578;
+  text-decoration: none;
+}
+
+.interia-navbar__mobile-panel {
+  display: none;
+}
+
+.interia-navbar-demo__content {
+  width: min(960px, 100%);
+  margin: 72px auto;
+  padding: 0 24px;
+}
+
+@media (max-width: 1160px) {
+  .interia-navbar__inner {
+    grid-template-columns: 190px 1fr auto;
+    min-height: 88px;
+  }
+
+  .interia-navbar__weather,
+  .interia-navbar__search,
+  .interia-navbar__quick-links,
+  .interia-navbar__menu-trigger {
+    display: none;
+  }
+
+  .interia-navbar__mobile-trigger {
+    display: inline-flex;
+    justify-self: end;
+  }
+
+  .interia-navbar__mobile-panel {
+    display: block;
+    max-height: 0;
+    overflow: hidden;
+    background: #fff;
+    border-top: 1px solid #dce3f2;
+    transition: max-height 220ms ease;
+  }
+
+  .interia-navbar__mobile-panel.is-open {
+    max-height: 440px;
+  }
+
+  .interia-navbar__mobile-search {
+    padding: 14px 20px;
+    display: grid;
+    gap: 8px;
+  }
+
+  .interia-navbar__mobile-search input {
+    border: 1px solid #cad6ef;
+    border-radius: 8px;
+    min-height: 40px;
+    padding: 0 12px;
+  }
+
+  .interia-navbar__mobile-list {
+    list-style: none;
+    margin: 0;
+    padding: 0 20px 16px;
+    display: grid;
+    gap: 4px;
+  }
+
+  .interia-navbar__mobile-list a {
+    min-height: 42px;
+    border-radius: 8px;
+    padding: 0 10px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+
+  .interia-navbar__mobile-list a:focus-visible,
+  .interia-navbar__dropdown-section a:focus-visible,
+  .interia-navbar__quick-link:focus-visible,
+  .interia-navbar__menu-trigger:focus-visible,
+  .interia-navbar__mobile-trigger:focus-visible,
+  .interia-navbar__search-input:focus-visible {
+    outline: 2px solid #3f6fde;
+    outline-offset: 2px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .interia-navbar,
+  .interia-navbar__weather,
+  .interia-navbar__search,
+  .interia-navbar__mobile-panel {
+    transition: none;
+  }
+}
+
+@keyframes fade-slide {
+  from {
+    opacity: 0;
+    transform: translateY(-8px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
