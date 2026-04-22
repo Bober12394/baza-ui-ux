@@ -5,7 +5,7 @@ const quickLinks = [
   { label: 'Mail', icon: '✉' },
   { label: 'Buzz', icon: '◉' },
   { label: 'Sport', icon: '⚽' },
-  { label: 'Eco', icon: '❃' },
+  { label: 'Eco', icon: '✶' },
   { label: 'Podcasts', icon: '▶' },
 ];
 
@@ -50,15 +50,6 @@ function InteriaStyleNavbar() {
             <span className="interia-navbar__brand-main">Novaria</span>
             <span className="interia-navbar__brand-sub">teraz</span>
           </a>
-
-          <section className="interia-navbar__weather" aria-label="Weather summary">
-            <span className="interia-navbar__sun" aria-hidden="true">☀</span>
-            <div>
-              <p className="interia-navbar__weather-top">TERAZ 14°C</p>
-              <p className="interia-navbar__weather-bottom">POWIETRZE Bardzo dobre</p>
-            </div>
-          </section>
-
           <form className="interia-navbar__search" role="search" aria-label="Site search">
             <label htmlFor="interia-like-query" className="interia-navbar__search-label">Szukaj</label>
             <input id="interia-like-query" className="interia-navbar__search-input" type="search" placeholder="SZUKAJ" />
