@@ -2,6 +2,7 @@ import { useEffect, useMemo, useState } from "react";
 import "./App.css";
 import Navbar from "./components/Navbar";
 import { getComponentForRoute } from "./components/componentRegistry";
+import InteriaReferenceNavbarV2 from "./components/custom/InteriaReferenceNavbarV2";
 import { findRouteMatch } from "./components/navigationData";
 
 function App() {
@@ -54,8 +55,10 @@ function App() {
       )}
 
       <main
-        className={`page-content ${showHome || showNotFound || isUiBuilderPage ? "page-content--center" : ""}`}
+        className={`page-content ${showHome || showNotFound ? "page-content--center" : ""}`}
       >
+        {isUiBuilderPage && <InteriaReferenceNavbarV2 />}
+
         {showHome && <h1>Strona główna</h1>}
 
         {showRouteComponent && (
