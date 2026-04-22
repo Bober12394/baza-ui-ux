@@ -186,10 +186,9 @@
   transform: translateX(0);
   opacity: 1;
   animation-name: slideRightAnimation;
-  animation-duration: 1.4s;
+  animation-duration: 1s;
   animation-timing-function: ease;
-  animation-delay: 0.7s;
-  animation-iteration-count: infinite;
+  animation-iteration-count: 1;
   animation-direction: normal;
   animation-fill-mode: both;
 }
@@ -259,7 +258,7 @@
   animation-name: swingAnimation;
   animation-duration: 3.4s;
   animation-timing-function: cubic-bezier(0.68,-0.55,0.27,1.55);
-  animation-iteration-count: infinite;
+  animation-iteration-count: 1;
   animation-direction: normal;
   animation-fill-mode: both;
 }
