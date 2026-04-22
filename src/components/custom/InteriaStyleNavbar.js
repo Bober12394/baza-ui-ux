@@ -51,7 +51,6 @@ function InteriaStyleNavbar() {
             <span className="interia-navbar__brand-sub">teraz</span>
           </a>
           <form className="interia-navbar__search" role="search" aria-label="Site search">
-            <label htmlFor="interia-like-query" className="interia-navbar__search-label">Szukaj</label>
             <input id="interia-like-query" className="interia-navbar__search-input" type="search" placeholder="SZUKAJ" />
             <button type="submit" className="interia-navbar__search-submit" aria-label="Search">⌕</button>
           </form>

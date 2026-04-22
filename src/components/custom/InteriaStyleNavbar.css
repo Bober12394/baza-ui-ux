@@ -11,6 +11,12 @@
   100% { transform: rotate(0deg); }
 }
 
+
+@keyframes sidebarColorShift {
+  from { color: inherit; }
+  to { color: #3399ff; }
+}
+
 .interia-navbar-demo {
   min-height: 180vh;
   background: #f6f7f9;
@@ -80,17 +86,10 @@
   max-width: 540px;
   display: grid;
   grid-template-columns: 1fr auto;
-  align-items: end;
+  align-items: center;
   column-gap: 10px;
 }
 
-.interia-navbar__search-label {
-  grid-column: span 2;
-  font-size: 0.82rem;
-  text-transform: uppercase;
-  color: #4a5675;
-  margin-bottom: 4px;
-}
 
 .interia-navbar__search-input {
   width: 100%;
@@ -223,11 +222,17 @@
   min-height: 58px;
   display: flex;
   align-items: center;
-  font-size: 2rem;
+  font-size: 17px;
+  font-family: "Open Sans", "Segoe UI", sans-serif;
+  transition: color var(--transition-duration-long) ease;
 }
 
 .interia-navbar__sidebar-bottom a {
   color: #3f4f72;
+}
+
+.interia-navbar__sidebar a:hover {
+  animation: sidebarColorShift var(--transition-duration-long) ease forwards;
 }
 
 .interia-navbar-demo__content {
@@ -276,9 +281,6 @@
     max-width: 100%;
   }
 
-  .interia-navbar__search-label {
-    display: none;
-  }
 }
 
 @media (max-width: 760px) {
@@ -300,7 +302,7 @@
   }
 
   .interia-navbar__sidebar a {
-    font-size: 2.2rem;
+    font-size: 17px;
   }
 }
 
