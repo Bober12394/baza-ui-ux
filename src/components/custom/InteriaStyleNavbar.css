@@ -12,6 +12,11 @@
 }
 
 
+@keyframes slideRightAnimation {
+  0% { transform: translateX(100px); opacity: 0; }
+  100% { transform: translateX(0); opacity: 1; }
+}
+
 @keyframes sidebarColorShift {
   from { color: inherit; }
   to { color: #3399ff; }
@@ -170,6 +175,7 @@
   height: 100vh;
   z-index: 70;
   transform: translateX(102%);
+  opacity: 0;
   transition: all var(--transition-duration-long) ease;
   display: grid;
   grid-template-rows: 64% 36%;
@@ -178,6 +184,14 @@
 
 .interia-navbar__sidebar.is-open {
   transform: translateX(0);
+  opacity: 1;
+  animation-name: slideRightAnimation;
+  animation-duration: 1.4s;
+  animation-timing-function: ease;
+  animation-delay: 0.7s;
+  animation-iteration-count: infinite;
+  animation-direction: normal;
+  animation-fill-mode: both;
 }
 
 .interia-navbar__sidebar-top {
